@@ -21,7 +21,8 @@ import javax.tools.Diagnostic;
 public class ProcessingContext {
     private final ProcessingEnvironment env;
     private final Messager              messager;
-    private Map<Element, ErrorContext> errors        = new HashMap<>();
+
+    private Map<Element, ErrorContext> messages      = new HashMap<>();
     private List<BuilderModel>         builderModels = new ArrayList<>();
 
     public ProcessingContext(ProcessingEnvironment env) {
@@ -29,20 +30,18 @@ public class ProcessingContext {
         messager = env.getMessager();
     }
 
-    public void error(Element annotatedElement, AnnotationMirror annotationMirror) {
-        errors.put(annotatedElement, new ErrorContext(ValueObjectProcessor.DEFAULT_ERROR_MESSAGE, annotationMirror, null));
+    public void addMessage(Element annotatedElement, AnnotationMirror annotationMirror, Diagnostic.Kind kind) {
+        messages.put(annotatedElement,
+                     new ErrorContext(ValueObjectProcessor.DEFAULT_ERROR_MESSAGE, annotationMirror, null, kind));
     }
 
     public void printErrors() {
-        for (Map.Entry<Element, ErrorContext> entry : errors.entrySet()) {
+        for (Map.Entry<Element, ErrorContext> entry : messages.entrySet()) {
             ErrorContext errorContext = entry.getValue();
-            messager.printMessage(Diagnostic.Kind.ERROR,
-                                  errorContext.message,
-                                  entry.getKey(),
-                                  errorContext.annotationMirror,
-                                  errorContext.annotationValue);
+            messager
+            .printMessage(errorContext.messageKind, errorContext.message, entry.getKey(), errorContext.annotationMirror,
+                          errorContext.annotationValue);
         }
-
     }
 
     public ProcessingEnvironment getEnv() {
@@ -71,7 +70,7 @@ public class ProcessingContext {
      * @return true, if any error occured.
      */
     public boolean failed() {
-        return errors.size() > 0;
+        return messages.size() > 0;
     }
 
     public List<BuilderModel> getBuilderModels() {
@@ -80,18 +79,21 @@ public class ProcessingContext {
 
     public void clear() {
         builderModels.clear();
-        errors.clear();
+        messages.clear();
     }
 
     private static class ErrorContext {
         public final CharSequence     message;
         public final AnnotationMirror annotationMirror;
         public final AnnotationValue  annotationValue;
+        public final Diagnostic.Kind  messageKind;
 
-        private ErrorContext(CharSequence message, AnnotationMirror annotationMirror, AnnotationValue annotationValue) {
+        private ErrorContext(CharSequence message, AnnotationMirror annotationMirror, AnnotationValue annotationValue,
+                             Diagnostic.Kind messageKind) {
             this.message = message;
             this.annotationMirror = annotationMirror;
             this.annotationValue = annotationValue;
+            this.messageKind = messageKind;
         }
     }
 }

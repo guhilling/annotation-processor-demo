@@ -3,6 +3,7 @@ package de.hilling.training.annotations.processing;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
 
 /**
  * Generate builder source code for given classes.
