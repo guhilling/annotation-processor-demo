@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.hilling.training</groupId>
-    <artifactId>annotation-processing</artifactId>
+    <artifactId>annotation-processor-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
