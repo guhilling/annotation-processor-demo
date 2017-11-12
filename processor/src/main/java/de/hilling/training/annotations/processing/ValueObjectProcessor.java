@@ -12,11 +12,9 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
-// tag::declaration[]
 @SupportedAnnotationTypes("de.hilling.training.annotations.processing.ValueObject")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class ValueObjectProcessor extends AbstractProcessor {
-// end::declaration[]
 
     public static final String DEFAULT_ERROR_MESSAGE = "@ValueObject type must be a non-abstract, public class";
     private ProcessingContext     context;

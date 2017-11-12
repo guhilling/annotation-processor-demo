@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.lang.model.element.TypeElement;
 
-public class BuilderModel {
-    public final List<BeanAttribute> attributes;
-    public final TypeElement         annotatedElement;
+// tag::declaration[]
+class BuilderModel {
+    final List<BeanAttribute> attributes;
+    final TypeElement         annotatedElement;
+// end::declaration[]
 
-    public BuilderModel(List<BeanAttribute> attributes, TypeElement annotatedElement) {
+    BuilderModel(List<BeanAttribute> attributes, TypeElement annotatedElement) {
         this.attributes = attributes;
         this.annotatedElement = annotatedElement;
     }
