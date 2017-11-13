@@ -8,6 +8,9 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
+/**
+ * Simple example for generating code with squarepoet.
+ */
 public class HelloWorldGenerator {
 
     @Test
