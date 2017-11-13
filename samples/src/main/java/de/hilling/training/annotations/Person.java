@@ -2,7 +2,6 @@ package de.hilling.training.annotations;
 
 import java.time.LocalDate;
 
-import org.immutables.serial.Serial;
 import org.immutables.value.Value;
 
 @Value.Immutable
