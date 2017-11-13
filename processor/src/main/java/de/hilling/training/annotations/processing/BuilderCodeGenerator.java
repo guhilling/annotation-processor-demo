@@ -56,15 +56,15 @@ public class BuilderCodeGenerator {
 
     private void generateBuilderMethod() {
         ClassName elementClassType = ClassName.get(packageName, elementClassName);
-        MethodSpec.Builder withMethod = MethodSpec.methodBuilder("build")
+        MethodSpec.Builder buildMethod = MethodSpec.methodBuilder("build")
                                                   .addModifiers(Modifier.PUBLIC)
                                                   .returns(elementClassType)
                                                   .addStatement("$T result = new $T()", elementClassType, elementClassType);
         for (FieldSpec attribute : attributes) {
-            withMethod.addStatement("result.set" + toUpperFirstCharacter(attribute.name) + "(" + attribute.name + ")");
+            buildMethod.addStatement("result.set" + toUpperFirstCharacter(attribute.name) + "(" + attribute.name + ")");
         }
 
-        methods.add(withMethod.addStatement("return result")
+        methods.add(buildMethod.addStatement("return result")
                               .build());
 
     }
