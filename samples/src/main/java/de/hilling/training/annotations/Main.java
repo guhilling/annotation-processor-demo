@@ -2,7 +2,7 @@ package de.hilling.training.annotations;
 
 import java.time.LocalDate;
 
-public class Nursery {
+public class Main {
 
     public static void main(String args[]) {
         final ImmutablePerson person = ImmutablePerson.builder()
