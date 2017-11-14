@@ -5,15 +5,15 @@ import java.time.LocalDate;
 public class Main {
 
     public static void main(String args[]) {
-        final ImmutablePerson gunnar = ImmutablePerson.builder()
-                                                      .birthDay(LocalDate.ofYearDay(1971, 166))
-                                                      .firstName("Gunnar")
-                                                      .lastName("Hilling")
-                                                      .build();
+
+        // tag::creation[]
+        ImmutablePerson gunnar = ImmutablePerson.builder()
+                                                .birthDay(LocalDate.of(1971, 15, 6))
+                                                .firstName("Gunnar")
+                                                .lastName("Hilling").build();
+        // end::creation[]
         System.out.println(gunnar);
 
-        ImmutablePerson.builder().from(gunnar)
-                       .firstName("Lasse")
-                       .build();
+        ImmutablePerson.builder().from(gunnar).firstName("Lasse").build();
     }
 }
