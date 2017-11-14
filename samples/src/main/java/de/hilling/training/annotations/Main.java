@@ -6,11 +6,13 @@ public class Main {
 
     public static void main(String args[]) {
 
+        ImmutablePerson gunnar =
         // tag::creation[]
-        ImmutablePerson gunnar = ImmutablePerson.builder()
-                                                .birthDay(LocalDate.of(1971, 15, 6))
-                                                .firstName("Gunnar")
-                                                .lastName("Hilling").build();
+        ImmutablePerson.builder()
+                       .birthDay(LocalDate.of(1971, 15, 6))
+                       .firstName("Gunnar")
+                       .lastName("Hilling")
+                       .build();
         // end::creation[]
         System.out.println(gunnar);
 
