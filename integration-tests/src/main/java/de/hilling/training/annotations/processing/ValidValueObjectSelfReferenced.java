@@ -4,6 +4,7 @@ package de.hilling.training.annotations.processing;
 public class ValidValueObjectSelfReferenced {
 
     private String name;
+    private String lastName;
 
     public String getName() {
         return name;
@@ -17,4 +18,11 @@ public class ValidValueObjectSelfReferenced {
         return new ValidValueObjectSelfReferencedBuilder();
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
